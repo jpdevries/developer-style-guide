@@ -10,6 +10,10 @@ You are free to leverage the same JavaScript tooling and scripts used to enhance
 
 The default MODX theme uses modern JavaScript that is transpiled with Babel, HTML 5.x, and future forward CSS. 
 
+To ensure that the MODX core distribution is accessible to everyone, accessibility is mandated for contributions to the core. MODX Extras that pass an accessibility audit by following the guidelines found here are awarded with the `accessibility-ready` label. The sooner accessibility is brought into the design process the better. Get feedback and support on your sketches, concepts, designs, and code by posting your work in the MODX Forums. 
+
+While we value the importance of accessibility enough to mandate it in the core, we would be remissed if we made the process of contributing to the MODX core itself less accessible. If you need guidance on maintaining accessibility for a pull request please do not hesitate to request an accessibility advisor. 
+
 ## Authoring Markup 
 Semantic HTML documents are implicitly performant, optimal, and accessible. So we recommend starting coding your component as such. If you need to post or get data to and from the database start with a semantic HTML form. JavaScript should always be used as an enhancement. As you progressively enhance your markup into a more asynchronous user experience ensure that you do not degrade the initial accessibility of your semantic document. 
 
@@ -91,3 +95,111 @@ export default class ImageGrid extends Component {
 }
 ```
 
+## Leveraging Browser Cache
+
+To effectively leverage the browser cache do not bundle common frameworks and libraires such as Angular, React, or jQuery with your code. Instead, load them as seaprate files like so:
+
+```html
+<!-- load jQuery separately -->
+<script src="assets/js/vendor/jquery-3.2.0.min.js"></script>
+<!-- load your component -->
+<script src="assets/components/mycomponent/js/mycomponent.js"></script>
+```
+
+To leverage the browser cache across MODX installations we recommend loading common frameworks and libraries from a CDN with a local fallback like so:
+
+```html
+<!-- first attempt to load jQuery from a CDN -->
+<script src="//code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
+<!-- if the CDN didn't work load jQuery from a local fallback -->
+<script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-3.2.0.min.js"><\/script>')</script>
+<!-- load your component -->
+<script src="assets/components/mycomponent/js/mycomponent.js"></script>
+```
+
+There is no point in loading a common framework or library if a sufficient version of it is already loaded in the page. Before loading common dependencies perform feature detection to test if they are needed like so:
+
+```html
+<!-- check if we need jQuery, then if needed attempt to load jQuery from a CDN -->
+<script>window.jQuery || document.write('<script src="//code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"><\/script>')</script>
+```
+
+To leverage the browser cache and ensure that the cache is flushed when updates are made it is important to include a version number or some type of unique hash within your assets file name. For example instead of `app.js` you'd name your file `app.1.0.0.js`.
+
+Thus far we've explored HTML patterns to load scripts. You can also load your depdencies with `lazyload-script`:
+
+```js
+import lazyLoadScript from 'lazyload-script';
+
+const promises = [];
+
+if(!React) promises.push(
+  // try to load React from a CDN, fallback to a local copy 
+  lazyLoadScript("https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js", "react.15.4.2.min.js").catch((err => (
+    lazyLoadScript(`./js/vendor/react.15.4.2.min.js`, "react.15.4.2.min.js")
+  )))
+);
+
+if(!ReactDOM) promises.push(
+  // try to load React DOM from a CDN, fallback to a local copy 
+  lazyLoadScript("https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js", "react-dom.15.4.2.min.js").catch((err => {
+    lazyLoadScript(`./js/vendor/react-dom.15.4.2.min.js`, "react-dom.15.4.2.min.js")
+  }))
+);
+
+if(!Redux) promises.push(
+  // try to load Redux from a CDN, fallback to a local copy 
+  lazyLoadScript("https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.min.js", "redux.3.6.0.min.js").catch((err => {
+    lazyLoadScript(`./js/vendor/redux.3.6.0.min.js`, "redux.3.6.0.min.js")
+  }))
+);
+
+if(!ReactRedux) promises.push(
+  // try to load React Redux from a CDN, fallback to a local copy 
+  lazyLoadScript("https://cdnjs.cloudflare.com/ajax/libs/react-redux/5.0.3/react-redux.min.js", "react-redux.5.0.3.min.js").catch((err => {
+    lazyLoadScript(`./js/vendor/react-redux.5.0.3.min.js`, "react-redux.5.0.3.min.js")
+  }))
+);
+ 
+Promise.all(promises).then(() => {
+  // React, React DOM, Redux, and React Redux are ready. woohoo! 
+});
+```
+
+## Enhancing Forms
+
+With a little creativity, just about any web component can be enhanced from a HTML form. Consider the following HTML form:
+
+```html
+<form id="signup" action="/core/connectors/mycomponent/signup" method="POST">
+  <label for="email">
+    <input required type="email" id="email" name="email" />
+    <button>Sign Up</button>
+  </label>
+</form>
+```
+
+When the form is submitted an email address with syncronously be posted to `/core/connectors/mycomponent/signup`. Now consider you want to enhance this form to be asyncronous. You may be tempted to do something like the following:
+
+```js
+const signup = document.getElementById("signup");
+signup.querySelector('button').addEventListener('click', (event) => {
+  const email = document.getElementById("email");
+  // send the email to the server
+});
+```
+
+There are several issues here:
+ - not all users click
+ - we are bypassing the HTML5 Form Validation API
+ - we are unnecessarily querying the DOM for the input value
+ 
+ Instead of listening to a click event on the submit button, listen to the submit event on the form:
+ 
+ ```js
+document.getElementById("signup").addEventListener('submit', (event) => {
+  const formData = new FormData(event.target),
+  email = formData.get("email");
+  // send the email to the server
+});
+```
