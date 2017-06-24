@@ -180,7 +180,7 @@ With a little creativity, just about any web component can be enhanced from a HT
 </form>
 ```
 
-When the form is submitted an email address with syncronously be posted to `/core/connectors/mycomponent/signup`. Now consider you want to enhance this form to be asyncronous. You may be tempted to do something like the following:
+When the form is submitted an email address will syncronously be posted to `/core/connectors/mycomponent/signup`. Now consider you want to enhance this form to be asyncronous. You may be tempted to do something like the following:
 
 ```js
 const signup = document.getElementById("signup");
