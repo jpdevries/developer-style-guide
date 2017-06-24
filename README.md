@@ -173,9 +173,10 @@ With a little creativity, just about any web component can be enhanced from a HT
 ```html
 <form id="signup" action="/core/connectors/mycomponent/signup" method="POST">
   <label for="email">
+    Email
     <input required type="email" id="email" name="email" />
-    <button>Sign Up</button>
   </label>
+  <button>Sign Up</button>
 </form>
 ```
 
