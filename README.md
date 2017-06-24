@@ -26,7 +26,7 @@ To meet accessibility guidelines it is important that you use relative units for
 We recommend using a [webpack](https://webpack.js.org) workflow to preprocess and bundle modern JavaScript modules into production code that is delivered to the browser. Bundling modules allows for code reuse. For example, you can use the same JavaScript modules found in the MODX core like so:
 
 ```js 
-import { ComboBox, DataGrid, Tree } from 'modxjs';
+import { ComboBox } from 'modxjs';
 ```
 
 Modules such as the DataGrid which are JavaScript classes can be extended like so:
