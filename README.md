@@ -213,5 +213,7 @@ document.getElementById("signup").addEventListener('submit', (event) => {
 By using the `Date.toLocaleString()`, `Date.date.toLocaleDateString()`, and `Date.prototype.toLocaleTimeString()` when formatting dates they'll always be formatted in the expected local format based on the user agent or the MODX users locale setting. For example:
 
 ```js
-const dateString = new Date().toLocaleString(`${MODX.user.locale}`);
+const dateTimeString = new Date().toLocaleString(MODX.user.locale),
+dateString = new Date().toLocaleDateString(MODX.user.locale),
+timeString = new Date().toLocaleTimeString(MODX.user.locale);
 ```
