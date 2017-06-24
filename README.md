@@ -20,7 +20,35 @@ Semantic HTML documents are implicitly performant, optimal, and accessible. So w
 ## Authoring Styles 
 We recommend progressively enhancing CSS styles. For example, if you use modern grid layout enhance our layout from a block layout, to a flexible layout, and finally to a grid layout. You are free to use the same CSS preprocessor and postprocessor tooling found in the default theme. However you author your styles, please keep accessibility in mind. By using the MODX Theme Properties in your CSS you'll ensure that your components automatically respond to users accessibility preferences such as high contrast modes.
 
+CSS Properties inhereted from the `.component` class allow us to style various aspects of our component in one block. Here we set a default color of blue, respond to active high contrast modes by setting the color to dark blue, and respond to black-on-white and white-on-black contrast preferences accordingly.
+
+```css
+.component.my-component {
+  --color: blue;
+  --background: white;
+  
+  --active-contrast-color: darkblue; /* triggered in ms-high-contrast: active mode */
+
+  --black-on-white-background: white; /* triggered in ms-high-contrast: black-on-white mode */
+  --black-on-white-color: rgb(8, 8, 8); /* almost black, triggered in ms-high-contrast: black-on-white mode */
+
+  --white-on-black-color: white; /* almost black, triggered in ms-high-contrast: white-on-black mode */  
+  --white-on-black-background: rgb(8, 8, 8); /* almost black, triggered in ms-high-contrast: black-on-white mode */
+}
+```
+
+
+
 To meet accessibility guidelines it is important that you use relative units for typography and layout. Do not use pixels to set type or define media queries as doing so is incompatible with text&ndash;only zoom features.
+
+```css
+.my-component {
+  /* use relative units for typography and layout */
+  font-size: 1.2rem;
+  padding: 1rem;
+  max-width: 42ch;
+}
+```
 
 ## Authoring Scripts 
 We recommend using a [webpack](https://webpack.js.org) workflow to preprocess and bundle modern JavaScript modules into production code that is delivered to the browser. Bundling modules allows for code reuse. For example, you can use the same JavaScript modules found in the MODX core like so:
