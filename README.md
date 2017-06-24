@@ -184,6 +184,8 @@ When the form is submitted an email address with syncronously be posted to `/cor
 ```js
 const signup = document.getElementById("signup");
 signup.querySelector('button').addEventListener('click', (event) => {
+  event.preventDefault();
+  
   const email = document.getElementById("email");
   // send the email to the server
 });
@@ -198,8 +200,18 @@ There are several issues here:
  
  ```js
 document.getElementById("signup").addEventListener('submit', (event) => {
+  event.preventDefault();
+  
   const formData = new FormData(event.target),
   email = formData.get("email");
   // send the email to the server
 });
+```
+
+## Formatting Dates and Times
+
+By using the `Date.toLocaleString()`, `Date.date.toLocaleDateString()`, and `Date.prototype.toLocaleTimeString()` when formatting dates they'll always be formatted in the expected local format based on the user agent or the MODX users locale setting. For example:
+
+```js
+const dateString = new Date().toLocaleString(`${MODX.user.locale}`);
 ```
