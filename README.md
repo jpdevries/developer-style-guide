@@ -2,7 +2,7 @@
 
 HTML is initially performant, optimal, and accessible. So we recommend starting your components HTML&ndash;first. 
 
-Within M5BP (MODX HTML5 Boilerplate), you'll find several common components that are free for you to use. All components are built with HTML+(S)CSS. Components are optionally enhanced with JavaScript enhancements. 
+Within M5BP (MODX HTML5 Boilerplate), you'll find several common components that are free for you to use. All components are built with HTML+(S)CSS. Components are optionally enhanced with JavaScript. 
 
 You are free to use the same JavaScript tooling and scripts used to enhance the default Manager theme. We feel it is important to provide creative freedom not just when building websites, but when building components for the Manager itself. Therefore, you are also free to use the tooling of your choice when making JavaScript enhancements. 
 
@@ -46,7 +46,7 @@ fetch(`${MODX.config.mgrURL}connectors/resources`, {
 });
 ```
 
-For security purposes it is important to send include credentials with the request so that cookies can be sent and received. 
+For security purposes it is important to include credentials with the request so that cookies can be sent and received. 
 
 You'll likely need to `POST`, `PUT`, and `DELETE` data to your component's connectors. Set the method and body properties of the request options Object like so:
 
