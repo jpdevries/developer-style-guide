@@ -206,6 +206,7 @@ Promise.all(promises).then(() => {
 
 **See Also**
 
+ - [webpack Externals](https://webpack.js.org/configuration/externals/)
  - [`lazyload-script`](https://www.npmjs.com/package/lazyload-script)
 
 ### Service Workers 
