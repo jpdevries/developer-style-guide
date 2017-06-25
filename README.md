@@ -263,17 +263,15 @@ self.addEventListener('activate', function(event) {
 });
 ```
 
-You only need to register your service worker once.
+Don't forget to register your service worker.
 
 ```js
-if (!navigator.serviceWorker.controller) {
-  // Register the ServiceWorker
+// Register the ServiceWorker
   navigator.serviceWorker.register(`${MODX.config.baseURL}connectors/my-component/service-worker.js`, {
-    scope: './'
-  }).then(function(reg) {
-    debug(reg.scope, 'register');
-  });
-}
+  scope: './'
+}).then(function(reg) {
+  // service worker is registered
+});
 ```
 
 **See Also**
