@@ -8,7 +8,7 @@ The more JavaScript drivers components have the more flexible creating Manager t
 
 You are free to leverage the same JavaScript tooling and scripts used to enhance the default Manager theme. We feel it is important to provide creative freedom not just when building websites, but when building components for the Manager itself. Therefore, you are also **free to use the tooling of your choice** when making JavaScript&nbsp;enhancements. 
 
-To ensure that the MODX core distribution is accessible to everyone, accessibility is mandated for contributions to the core. MODX Extras that pass an accessibility audit by following the guidelines found here are awarded with the `accessibility-ready` label. The sooner accessibility is brought into the design process the better. Get feedback and support on your sketches, concepts, designs, and code by posting your work in the MODX&nbsp;Forums. 
+To ensure that the MODX core distribution is accessible to everyone, accessibility is mandated for contributions to the core. MODX Extras that pass an accessibility audit are awarded the `accessibility-ready` label. The sooner accessibility is brought into the design process the better. Get feedback and support on your sketches, concepts, designs, and code by posting your work in the MODX&nbsp;Forums. 
 
 While we value the importance of accessibility enough to mandate it in the core, we would be remissed if we made the process of contributing to the MODX core itself less accessible. If you are interested in contributing to the core and need guidance on maintaining accessibility for a pull request please do not hesitate to request an accessibility&nbsp;advisor. 
 
@@ -55,6 +55,31 @@ CSS Properties inhereted from the `.mx-component` class allow us to style variou
 
 **See Also**
  - [Why I'm Excited About Native CSS Variables](https://philipwalton.com/articles/why-im-excited-about-native-css-variables/)
+ 
+### Responding to User Preferences 
+
+The `.my-component` class responds to most user preferences for you, but if you wish to customize or alter them you can override these properties. For contrast preferences use both media queries and the `data-` API like so:
+
+```css
+.mx-component.my-component {
+  /* triggered by MODX system and user level settings */
+  [data-contrast="active"] & {
+    .logo {
+      background-image: url('logo-high-contrast.svg');
+    }
+  }
+  
+  /* triggered by user agent level settings */
+  @media screen and (-ms-high-contrast: active) {
+    .logo {
+      background-image: url('logo-high-contrast.svg');
+    }
+  }
+}
+```
+
+## Cohesive User Experience
+To keep the end user experience harmonious, keep in mind that less is more. Utilize CSS inheritance from the Manager theme's base styles to keep your component consistent with the Manager it resides within. Things like colors, typography, hover effects and focus styles should ideally be consistent across the varous components of any given MODX Manager&nbsp;page. 
 
 ## Use Relative Units
 To meet accessibility guidelines it is important that you use relative units for typography and layout. Do not use declarative units such as pixels to set type or define media queries as doing so is incompatible with text&ndash;only zoom&nbsp;features.
@@ -83,6 +108,7 @@ To meet accessibility guidelines it is important that you use relative units for
 **See Also:**
 
  - [PX, EM or REM Media Queries?](https://zellwk.com/blog/media-query-units/)
+ - [rems, ems and Why you Probably Need Them](https://medium.com/@jpdevries/rems-and-ems-and-why-you-probably-need-them-ff99a0002cdd)
 
 ## Authoring Scripts 
 We recommend using a [webpack](https://webpack.js.org) workflow to preprocess and bundle modern JavaScript modules into production code that is delivered to the browser. Bundling modules allows for code reuse. For example, you can use the same JavaScript modules found in the MODX core like&nbsp;so:
@@ -184,7 +210,7 @@ export default class ImageGrid extends Component {
 
 ## Leveraging Browser Cache
 
-To effectively leverage the browser cache do not bundle common frameworks and libraires such as Angular, React, or jQuery with your code. Instead, load them as seaprate files like&nbsp;so:
+To effectively leverage the browser cache do not bundle common frameworks and libraires such as Angular, React, or jQuery with your code. Instead, load them as separate files like&nbsp;so:
 
 ```html
 <!-- load jQuery separately -->
@@ -205,7 +231,7 @@ To leverage the browser cache across MODX installations we recommend loading com
 <script src="assets/components/mycomponent/js/mycomponent.js"></script>
 ```
 
-### Intuitive Loading
+### Reluctant Loading
 There is no point in loading a common framework or library if a sufficient version of it is already loaded in the page. Before loading common dependencies perform feature detection to test if they are needed like&nbsp;so:
 
 ```html
@@ -283,9 +309,7 @@ self.addEventListener('install', function(event) {
 });
 
 function endsWithStickyFile(request) { // is the request to a sticky file?
-  STICKY_FILES.forEach((file) => {
-    if(request.endsWith(file)) return true;
-  });
+  for(let i = 0; i < STICKY_FILES.length; i++) if(request.endsWith(STICKY_FILES[i])) return true;
   return false;
 }
 
