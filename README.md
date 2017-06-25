@@ -24,6 +24,14 @@ CSS Properties inhereted from the `.component` class allow us to style various a
 
 ```css
 .component.my-component {
+  /* layout */
+  --flex-grow: 1; /* grow horizontally on mobile */
+  --flex-shrink: 0; /* don't shrink */
+  
+  --tablet-flex-grow: 0; /* don't grow horizontally on tablet and up */
+  --tablet-flex-basis: 42ch; /* set a flex basis on tablet and up */
+
+  /* base */
   --color: blue;
   --background: white;
   
@@ -39,7 +47,7 @@ CSS Properties inhereted from the `.component` class allow us to style various a
 
 
 
-To meet accessibility guidelines it is important that you use relative units for typography and layout. Do not use pixels to set type or define media queries as doing so is incompatible with text&ndash;only zoom features.
+To meet accessibility guidelines it is important that you use relative units for typography and layout. Do not use declarative units such as pixels to set type or define media queries as doing so is incompatible with text&ndash;only zoom features.
 
 ```css
 .my-component {
@@ -87,7 +95,7 @@ You'll likely need to `POST`, `PUT`, and `DELETE` data to your component's conne
 ```js 
 const formData = new FormData(document.getElementById('resource-create'));
 
-fetch(`${MODX.config.mgrURL}connectors/resources`, {
+fetch(`${MODX.config.baseURL}connectors/resources`, {
   method: 'PUT',
   body: formData,
   credentials: 'include'  
@@ -99,7 +107,7 @@ fetch(`${MODX.config.mgrURL}connectors/resources`, {
 You write fantastic code. But that doesn't mean it will always work. Handle errors by catching them like so:
 
 ```js 
-fetch(`${MODX.config.mgrURL}connectors/resources`, {
+fetch(`${MODX.config.baseURL}connectors/resources`, {
   //credentials: 'include' // whoops
 }).then((resources) => {
   resources.map((resource) => {
@@ -154,6 +162,8 @@ There is no point in loading a common framework or library if a sufficient versi
 
 To leverage the browser cache and ensure that the cache is flushed when updates are made it is important to include a version number or some type of unique hash within your assets file name. For example instead of `app.js` you'd name your file `app.1.0.0.js`.
 
+### Lazy Load Scripts
+
 Thus far we've explored HTML patterns to load scripts. You can also load your depdencies with `lazyload-script`:
 
 ```js
@@ -193,6 +203,82 @@ Promise.all(promises).then(() => {
   // React, React DOM, Redux, and React Redux are ready. woohoo! 
 });
 ```
+
+**See Also**
+
+ - [`lazyload-script`](https://www.npmjs.com/package/lazyload-script)
+
+### Service Workers 
+
+To improve user experience and performance on subsequent visits to the Manger, we recommend that you include a Service Worker with your Extra that hard cache appropriate assets like versioned CSS and JavaScript files. 
+
+```js
+const VERSION = '1.0.0-pl',
+STICKY_FILES = [ // these files will be stored in the service worker cache
+  `css/my-component.${VERSION}.css`,
+  `css/my-component.${VERSION}.min.css`,
+  `img/my-component.${VERSION}.svg`,
+  `img/my-component.${VERSION}.min.svg`,
+  `js/my-component.${VERSION}.js`,
+  `js/my-component.${VERSION}.min.js`
+];
+
+self.addEventListener('install', function(event) {
+  self.skipWaiting(); // greedily install the service worker
+});
+
+function endsWithStickyFile(request) { // is the request to a sticky file?
+  STICKY_FILES.forEach((file) => {
+    if(request.endsWith(file)) return true;
+  });
+  return false;
+}
+
+self.addEventListener('fetch', function(event) {
+  if(event.request.method !== 'GET' || !endsWithStickyFile(event.request)) return;
+  event.respondWith(
+    caches.match(event.request).then(function(resp) {
+      return resp || fetch(event.request).then(function(response) {
+        return caches.open(CACHE_NAME).then(function(cache) {
+          cache.put(event.request, response.clone());
+          return response;
+        });
+      });
+    })
+  );
+});
+
+self.addEventListener('activate', function(event) {
+  var cacheWhitelist = [VERSION];
+
+  event.waitUntil(
+    caches.keys().then(function(keyList) { // purge old cache partitions
+      return Promise.all(keyList.map(function(key) {
+        if (!cacheWhitelist.includes(key)) return caches.delete(key);
+      }));
+    }).then(function() {
+      self.clients.claim()
+    })
+  );
+});
+```
+
+You only need to register your service worker once.
+
+```js
+if (!navigator.serviceWorker.controller) {
+  // Register the ServiceWorker
+  navigator.serviceWorker.register(`${MODX.config.baseURL}connectors/my-component/service-worker.js`, {
+    scope: './'
+  }).then(function(reg) {
+    debug(reg.scope, 'register');
+  });
+}
+```
+
+**See Also**
+
+ - [Using Service Workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers)
 
 ## Enhancing Forms
 
@@ -237,6 +323,10 @@ document.getElementById("signup").addEventListener('submit', (event) => {
 });
 ```
 
+**See Also**
+
+ - [Give your Forms some Form](https://medium.com/front-end-hacking/give-your-forms-some-form-2ec73cb36981)
+
 ## Formatting Dates and Times
 
 By using the `Date.toLocaleString()`, `Date.date.toLocaleDateString()`, and `Date.prototype.toLocaleTimeString()` when formatting dates they'll always be formatted in the expected local format based on the user agent or the MODX users locale setting. For example:
@@ -246,3 +336,11 @@ const dateTimeString = new Date().toLocaleString(MODX.user.locale),
 dateString = new Date().toLocaleDateString(MODX.user.locale),
 timeString = new Date().toLocaleTimeString(MODX.user.locale);
 ```
+
+## Accessibility Testing
+
+A significant portion of accessibiilty testing can be done using automation. We recommend testing your Extras with the `axe-core` Chrome extensions prior to manual testing.
+
+**See Also**
+
+ - [Accessibility Testing with aXe](http://marcysutton.github.io/a11y-testing-with-axe)
