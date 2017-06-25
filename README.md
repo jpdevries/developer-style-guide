@@ -47,12 +47,24 @@ CSS Properties inhereted from the `.mx-component` class allow us to style variou
 
 To meet accessibility guidelines it is important that you use relative units for typography and layout. Do not use declarative units such as pixels to set type or define media queries as doing so is incompatible with text&ndash;only zoom features.
 
+**Do this:**
+
 ```css
 .my-component {
   /* use relative units for typography and layout */
   font-size: 1.2rem;
   padding: 1rem;
   max-width: 42ch;
+}
+```
+
+**Don't do this:**
+
+```css
+.my-component {
+  font-size: 18px;
+  padding: 10px;
+  max-width: 400px;
 }
 ```
 
