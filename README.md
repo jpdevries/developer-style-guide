@@ -1,18 +1,16 @@
 # Developer Style Guide
 
-HTML is initially performant, optimal, and accessible. So we recommend starting your components HTML&ndash;first. 
+HTML is initially performant, optimal, and accessible. So we recommend starting your components HTML&ndash;first. The default MODX theme uses modern JavaScript that is transpiled with Babel, HTML 5.x, and future forward CSS. 
 
 Within M5BP (MODX HTML5 Boilerplate), you'll find several common components that are free for you to use. All components are built with HTML+(S)CSS. Components are optionally enhanced with one or more JavaScript drivers. The MODX core team and MODX Advisory Board have chosen to enhance core components using `_____` so if you do as well you can ejoy additional tooling.
 
 The more JavaScript drivers components have the more flexible creating Manager themes becomes when authoring using different frameworks or libraries. JavaScript drivers do not dictate or influence HTML structure, style, or even functionality. They just enhance HTML components and carry out asyncronous tasks like fetching data from the server and updating the DOM. In theory, a component should be able to switch from using a React driver to an Angular driver without the user noticing the difference. Additionally, Manager themes should be able to run various web components enhanced with different JavaScript drivers without negating from the cohensiviness of the user experience. 
 
-You are free to leverage the same JavaScript tooling and scripts used to enhance the default Manager theme. We feel it is important to provide creative freedom not just when building websites, but when building components for the Manager itself. Therefore, you are also free to use the tooling of your choice when making JavaScript enhancements. 
-
-The default MODX theme uses modern JavaScript that is transpiled with Babel, HTML 5.x, and future forward CSS. 
+You are free to leverage the same JavaScript tooling and scripts used to enhance the default Manager theme. We feel it is important to provide creative freedom not just when building websites, but when building components for the Manager itself. Therefore, you are also **free to use the tooling of your choice** when making JavaScript enhancements. 
 
 To ensure that the MODX core distribution is accessible to everyone, accessibility is mandated for contributions to the core. MODX Extras that pass an accessibility audit by following the guidelines found here are awarded with the `accessibility-ready` label. The sooner accessibility is brought into the design process the better. Get feedback and support on your sketches, concepts, designs, and code by posting your work in the MODX Forums. 
 
-While we value the importance of accessibility enough to mandate it in the core, we would be remissed if we made the process of contributing to the MODX core itself less accessible. If you need guidance on maintaining accessibility for a pull request please do not hesitate to request an accessibility advisor. 
+While we value the importance of accessibility enough to mandate it in the core, we would be remissed if we made the process of contributing to the MODX core itself less accessible. If you are interested in contributing to the core and need guidance on maintaining accessibility for a pull request please do not hesitate to request an accessibility advisor. 
 
 ## Authoring Markup 
 Semantic HTML documents are implicitly performant, optimal, and accessible. So we recommend starting coding your component as such. If you need to post or get data to and from the database start with a semantic HTML form. JavaScript should always be used as an enhancement. As you progressively enhance your markup into a more asynchronous user experience ensure that you do not degrade the initial accessibility of your semantic document. 
