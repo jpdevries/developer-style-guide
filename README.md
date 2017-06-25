@@ -208,6 +208,10 @@ export default class ImageGrid extends Component {
 }
 ```
 
+**See Also**
+
+ - [Lazy Load React Modal](https://jpdevries.github.io/lazy-react-modal/)
+
 ## Leveraging Browser Cache
 
 To effectively leverage the browser cache do not bundle common frameworks and libraires such as Angular, React, or jQuery with your code. Instead, load them as separate files like&nbsp;so:
