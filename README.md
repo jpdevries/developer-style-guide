@@ -20,10 +20,10 @@ Semantic HTML documents are implicitly performant, optimal, and accessible. So w
 ## Authoring Styles 
 We recommend progressively enhancing CSS styles. For example, if you use modern grid layout enhance our layout from a block layout, to a flexible layout, and finally to a grid layout. You are free to use the same CSS preprocessor and postprocessor tooling found in the default theme. However you author your styles, please keep accessibility in mind. By using the MODX Theme Properties in your CSS you'll ensure that your components automatically respond to users accessibility preferences such as high contrast modes.
 
-CSS Properties inhereted from the `.component` class allow us to style various aspects of our component in one block. Here we set a default color of blue, respond to active high contrast modes by setting the color to dark blue, and respond to black-on-white and white-on-black contrast preferences accordingly.
+CSS Properties inhereted from the `.mx-component` class allow us to style various aspects of our component in one block. Here we set a default color of blue, respond to active high contrast modes by setting the color to dark blue, and respond to black-on-white and white-on-black contrast preferences accordingly.
 
 ```css
-.component.my-component {
+.mx-component.my-component {
   /* layout */
   --flex-grow: 1; /* grow horizontally on mobile */
   --flex-shrink: 0; /* don't shrink */
