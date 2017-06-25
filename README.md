@@ -232,7 +232,7 @@ export default class ImageGrid extends Component {
 }
 ```
 
-**See Also**
+**Examples**
 
  - [Lazy Load React Modal](https://jpdevries.github.io/lazy-react-modal/)
 
