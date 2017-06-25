@@ -1,4 +1,4 @@
-# Developer Style Guide
+# A Web Developer's Style Guide
 
 HTML is initially performant, optimal, and accessible. So we recommend starting your components HTML&ndash;first. The default MODX theme uses modern JavaScript that is transpiled with Babel, HTML 5.x, and future forward&nbsp;CSS. 
 
