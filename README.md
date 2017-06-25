@@ -4,7 +4,7 @@ HTML is initially performant, optimal, and accessible. So we recommend starting 
 
 Within M5BP (MODX HTML5 Boilerplate), you'll find several common components that are free for you to use. All components are built with HTML+(S)CSS. Components are optionally enhanced with one or more JavaScript drivers. The MODX core team and MODX Advisory Board have chosen to enhance core components using `_____` so if you do as well you can ejoy additional&nbsp;tooling.
 
-The more JavaScript drivers components have the more flexible creating Manager themes becomes when authoring using different frameworks or libraries. JavaScript drivers do not dictate or influence HTML structure, style, or even functionality. They just enhance HTML components and carry out asyncronous tasks like fetching data from the server and updating the DOM. In theory, a component should be able to switch from using a React driver to an Angular driver without the user noticing the difference. Additionally, Manager themes should be able to run various web components enhanced with different JavaScript drivers without negating from the cohensiviness of the user&nbsp;experience. 
+The more JavaScript drivers components have the more flexible creating Manager themes becomes when authoring within different frameworks or libraries. JavaScript drivers do not dictate or influence HTML structure, style, or even functionality. They just enhance HTML components and carry out predefined asyncronous features like fetching data from the server and updating the DOM. In theory, a component should be able to switch from using a React driver to an Angular driver without the user noticing the difference. Additionally, Manager themes should be able to run various web components enhanced with different JavaScript drivers without negating from the cohensiviness of the user&nbsp;experience. 
 
 You are free to leverage the same JavaScript tooling and scripts used to enhance the default Manager theme. We feel it is important to provide creative freedom not just when building websites, but when building components for the Manager itself. Therefore, you are also **free to use the tooling of your choice** when making JavaScript&nbsp;enhancements. 
 
@@ -79,7 +79,7 @@ The `.my-component` class responds to most user preferences for you, but if you 
 ```
 
 ## Cohesive User Experience
-To keep the end user experience harmonious, keep in mind that less is more. Utilize CSS inheritance from the Manager theme's base styles to keep your component consistent with the Manager it resides within. Things like colors, typography, hover effects and focus styles should ideally be consistent across the varous components of any given MODX Manager&nbsp;page. 
+To keep the end user experience harmonious, keep in mind that less is more. Utilize CSS inheritance from the Manager theme's base styles to keep your component consistent with the theme it resides within. Things like colors, typography, hover effects and focus styles should ideally be consistent across the varous components of any given MODX Manager&nbsp;page. 
 
 ## Use Relative Units
 To meet accessibility guidelines it is important that you use relative units for typography and layout. Do not use declarative units such as pixels to set type or define media queries as doing so is incompatible with text&ndash;only zoom&nbsp;features.
