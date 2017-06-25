@@ -142,6 +142,7 @@ To effectively leverage the browser cache do not bundle common frameworks and li
 <script src="assets/components/mycomponent/js/mycomponent.js"></script>
 ```
 
+### CDN with local fallbacks
 To leverage the browser cache across MODX installations we recommend loading common frameworks and libraries from a CDN with a local fallback like so:
 
 ```html
@@ -153,6 +154,7 @@ To leverage the browser cache across MODX installations we recommend loading com
 <script src="assets/components/mycomponent/js/mycomponent.js"></script>
 ```
 
+### Intuitive Loading
 There is no point in loading a common framework or library if a sufficient version of it is already loaded in the page. Before loading common dependencies perform feature detection to test if they are needed like so:
 
 ```html
@@ -160,6 +162,7 @@ There is no point in loading a common framework or library if a sufficient versi
 <script>window.jQuery || document.write('<script src="//code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"><\/script>')</script>
 ```
 
+### Cachebusting Assets
 To leverage the browser cache and ensure that the cache is flushed when updates are made it is important to include a version number or some type of unique hash within your assets file name. For example instead of `app.js` you'd name your file `app.1.0.0.js`.
 
 ### Lazy Load Scripts
