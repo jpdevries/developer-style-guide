@@ -25,6 +25,15 @@ To evaluate the semantics of your HTML, test and view your HTML with CSS styles 
 ## Authoring Styles 
 We recommend progressively enhancing CSS styles. For example, if you use modern grid layout enhance our layout from a block layout, to a flexible layout, and finally to a grid layout. You are free to use the same CSS preprocessor and postprocessor tooling found in the default theme. However you author your styles, please keep accessibility in mind. By using the MODX Theme Properties in your CSS you'll ensure that your components automatically respond to users accessibility preferences such as high contrast&nbsp;modes.
 
+### Scoped Styles
+How you author your styles is ultimately up to you, but they shouldn't class with other components. Avoid overriding base styles of the Manager theme. We recommended prefixing your CSS classes with an identifier unique to your component. For&nbsp;example:
+
+```css
+.batcher-table {
+  /* styles specific to the batcher component */
+}
+```
+
 ### Themable Styles with CSS Properties
 CSS Properties inhereted from the `.mx-component` class allow us to style various aspects of our component in one block without declaratively overriding them. Here we set a default color of blue, respond to active high contrast modes by setting the color to dark blue, and respond to black-on-white and white-on-black contrast preferences&nbsp;accordingly.
 
@@ -125,6 +134,21 @@ class CustomComboBox extends ComboBox {
     // do some custom stuff here
   }
 }
+```
+
+### Everything in its Right Place
+
+When making JavaScript enhancements it is important that you only take over ownership of your component's area of the&nbsp;DOM.
+
+**Do this:**
+```jsx
+const myWrapper = document.getElementById(#my-component-wrapper');
+ReactDOM.render(<MyComponent />, myWrapper);
+```
+
+**Don't do this:**
+```jsx
+ReactDOM.render(<MyEverything />, document.body);
 ```
 
 ## Asynchronous Requests 
