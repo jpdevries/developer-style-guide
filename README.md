@@ -30,7 +30,7 @@ How you author your styles is ultimately up to you, but they shouldn't class wit
 
 **Do this:**
 ```css
-.batcher-table {
+.batcher table {
   /* styles specific to the batcher component */
 }
 ```
