@@ -135,6 +135,9 @@ ReactDOM.render(<MyComponent />, myWrapper);
 ReactDOM.render(<MyEverything />, document.body);
 ```
 
+### Syntax Sugar
+We recommend writing modern JavaScript with syntax sugar and running it through Babel to transpile it back to ES5 for production as/if&nbsp;necessary. Feel free to take advantage of new syntax sugar like `const`, `let`, arrow functions, Promises, async/await and&nbsp;more.
+
 ## Asynchronous Requests
 AJAX requests use the Promise based Fetch API. For example we'd request a JSON response containing an array of all resources like&nbsp;so:
 
