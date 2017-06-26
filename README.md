@@ -216,7 +216,7 @@ export default class ImageGrid extends Component {
 
 ## Leveraging Browser Cache
 
-To effectively leverage the browser cache do not bundle common frameworks and libraires such as Angular, React, or jQuery with your code. Instead, load them as separate files like&nbsp;so:
+To effectively leverage the browser cache refrain from bundling common frameworks and libraires such as Angular, React, or jQuery with your code. Instead, load them as separate files like&nbsp;so:
 
 ```html
 <!-- load jQuery separately -->
@@ -289,6 +289,10 @@ Promise.all(promises).then(() => {
   // React, React DOM, Redux, and React Redux are ready. woohoo!
 });
 ```
+
+**Examples**
+
+ - [Makeanico](https://github.com/jpdevries/makeanico#weigh-in)
 
 **See Also**
 
