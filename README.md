@@ -139,7 +139,7 @@ ReactDOM.render(<MyEverything />, document.body);
 AJAX requests use the Promise based Fetch API. For example we'd request a JSON response containing an array of all resources like&nbsp;so:
 
 ```js
-fetch(`${config.baseURL}${config.connectors}/resources`, {
+fetch(`/resources`, {
   credentials: 'include'  
 }).then((resources) => {
   resources.map((resource) => {
@@ -155,7 +155,7 @@ You'll likely need to `POST`, `PUT`, and `DELETE` data to your component's conne
 ```js
 const formData = new FormData(document.getElementById('resource-create'));
 
-fetch(`${config.baseURL}${config.connectors}/resources`, {
+fetch(`/resources`, {
   method: 'PUT',
   body: formData,
   credentials: 'include'  
@@ -167,7 +167,7 @@ fetch(`${config.baseURL}${config.connectors}/resources`, {
 You write fantastic code. But that doesn't mean it will always work. Handle errors by catching them like&nbsp;so:
 
 ```js
-fetch(`${config.baseURL}${config.connectors}/resources`, {
+fetch(`/resources`, {
   //credentials: 'include' // whoops
 }).then((resources) => {
   resources.map((resource) => {
