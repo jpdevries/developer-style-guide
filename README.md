@@ -28,9 +28,17 @@ We recommend progressively enhancing CSS styles. For example, if you use modern 
 ### Scoped Styles
 How you author your styles is ultimately up to you, but they shouldn't class with other components. Avoid overriding base styles of the Manager theme. We recommended prefixing your CSS classes with an identifier unique to your component. For&nbsp;example:
 
+**Do this:**
 ```css
 .batcher-table {
   /* styles specific to the batcher component */
+}
+```
+
+**Don't do this:**
+```css
+.table {
+  /* dangerously loose styles */
 }
 ```
 
