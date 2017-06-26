@@ -16,7 +16,7 @@ To evaluate the semantics of your HTML, test and view your HTML with CSS styles 
 We recommend progressively enhancing CSS styles. For example, if you use modern grid layout enhance our layout from a block layout, to a flexible layout, and finally to a grid layout. You are free to use the same CSS preprocessor and postprocessor tooling found in the default theme. However you author your styles, please keep accessibility in mind. By using CSS Properties and `spectacular.scss` you'll ensure that your components automatically respond to users accessibility preferences such as high contrast&nbsp;modes.
 
 ### Scoped Styles
-How you author your styles is ultimately up to you, but they shouldn't class with other components. Avoid overriding base styles of the Manager theme. We recommended prefixing your CSS classes with an identifier unique to your component. For&nbsp;example:
+Global style should be global, but components are another story. How you author your components styles is ultimately up to you, but they shouldn't class with other components. Avoid overriding base styles of the Manager theme. We recommended prefixing your CSS classes with an identifier unique to your component. For&nbsp;example:
 
 **Do this:**
 ```css
