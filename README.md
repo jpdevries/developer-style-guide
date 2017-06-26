@@ -352,7 +352,7 @@ Don't forget to register your service worker.
 
 ```js
 // Register the ServiceWorker
-  navigator.serviceWorker.register(`${config.baseURL}connectors/my-component/service-worker.js`, {
+  navigator.serviceWorker.register(`/my-component/service-worker.js`, {
   scope: './'
 }).then(function(reg) {
   // service worker is registered
