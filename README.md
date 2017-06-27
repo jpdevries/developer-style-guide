@@ -1,6 +1,8 @@
 # A Web Developer's Style Guide
 
-HTML is initially performant, optimal, and accessible. So we recommend starting your components HTML&ndash;first.
+*As this guide was born from the [`modx-style-guide`](https://github.com/jpdevries/modx-style-guide) you'll find we note that parts of this style guide may apply to authoring web components, and not necessarily web&nbsp;pages or&nbsp;sites.*
+
+HTML is initially performant, optimal, and accessible. So we recommend starting your components HTML&ndash;first. 
 
 ## Authoring Markup
 Semantic HTML documents are implicitly performant, optimal, and accessible. So we recommend starting coding your component as such. If you need to post or get data to and from the database start with a semantic HTML form. JavaScript should always be used as an enhancement. As you progressively enhance your markup into a more asynchronous user experience ensure that you do not degrade the initial accessibility of your semantic&nbsp;document.
