@@ -5,7 +5,7 @@
 HTML is initially performant, optimal, and accessible. So we recommend starting your components HTML&ndash;first. 
 
 ## Authoring Markup
-Semantic HTML documents are implicitly performant, optimal, and accessible. So we recommend starting coding your component as such. If you need to post or get data to and from the database start with a semantic HTML form. JavaScript should always be used as an enhancement. As you progressively enhance your markup into a more asynchronous user experience ensure that you do not degrade the initial accessibility of your semantic&nbsp;document.
+Semantic HTML documents are implicitly performant, optimal, and accessible. So we recommend starting coding your component as such. If you need to post or get data to and from the database start with a semantic HTML form. JavaScript should always be used as an enhancement. As you progressively enhance your markup into a more asynchronous user experience ensure that you do not degrade the initial accessibility of your semantic&nbsp;document. 
 
 ### Performant Markup
 To evaluate the semantics of your HTML, test and view your HTML with CSS styles disabled. A semantic HTML document should remain usable in the nued. To keep the Manager experience reliable in the event of script breakages test your components with JavaScript&nbsp;disabled.
