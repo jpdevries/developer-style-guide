@@ -87,6 +87,30 @@ The `.my-component` class responds to most user preferences for you, but if you 
 }
 ```
 
+## Accessibility Guidelines
+
+For an inclusive user experience, follow the latest accessibility guidelines. Incoporate accessibility as early on in your process as possible, ideally in the initial phase. Reach out the greater accessibility community with the [`#a11y` Twitter Hashtag](https://twitter.com/hashtag/a11y?lang=en) and the A11y [Slackers Slack Channel](https://www.paciellogroup.com/blog/2015/07/anybody-can-be-an-a11y-slacker/). Don't overwhelm yourself. In the words of&nbsp;Léonie Watson:
+
+> Accessibility doesn't have to be perfect. It just needs to be a little better than it was yesterday.  
+&emsp;&mdash;&emsp;Léonie Watson, Technologic (Human Afterall): Accessibility mix, Fronteers&nbsp;AMS&nbsp;2016
+
+By making each project a little more accessibile than the last, you and your team will be naturally architecting inclusive experience soon&nbsp;enough.
+
+**See Also**
+
+ - [RGD Accessibility Handbook](https://www.rgd.ca/resources/accessibility.php)
+
+## Accessibility Testing
+
+A significant portion of accessibiilty testing can be done using automation. We recommend testing your Extras with the `axe-core` Chrome extensions prior to manual&nbsp;testing.
+
+**See Also**
+
+ - [Accessibility Testing with aXe](http://marcysutton.github.io/a11y-testing-with-axe)
+ 
+
+
+
 ## Cohesive User Experience
 To keep the end user experience harmonious, keep in mind that less is more. Utilize CSS inheritance from the Manager theme's base styles to keep your component consistent with the theme it resides within. Things like colors, typography, hover effects and focus styles should ideally be consistent across the various components of any given&nbsp;page.
 
@@ -459,10 +483,3 @@ timeString = new Date().toLocaleTimeString();
 
  - [`Date.toLocaleString()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString)
 
-## Accessibility Testing
-
-A significant portion of accessibiilty testing can be done using automation. We recommend testing your Extras with the `axe-core` Chrome extensions prior to manual&nbsp;testing.
-
-**See Also**
-
- - [Accessibility Testing with aXe](http://marcysutton.github.io/a11y-testing-with-axe)
