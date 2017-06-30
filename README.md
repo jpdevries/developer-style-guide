@@ -1,6 +1,6 @@
 # A Web Developer's Style Guide
 
-*As this guide was born from the [`modx-style-guide`](https://github.com/jpdevries/modx-style-guide) you'll find we note that parts of this style guide may apply to authoring web components, and not necessarily web&nbsp;pages or&nbsp;sites.*
+*As this guide was born from the [`modx-style-guide`](https://github.com/jpdevries/modx-style-guide) you'll find we note that parts of this style guide may apply to authoring web components, and not necessarily web&nbsp;pages or&nbsp;sites.* 
 
 HTML is initially performant, optimal, and accessible. So we recommend starting your components HTML&ndash;first.
 
